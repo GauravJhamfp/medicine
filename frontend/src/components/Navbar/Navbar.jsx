@@ -7,7 +7,7 @@ import { StoreContext } from '../../Context/StoreContext'
 const Navbar = ({ setShowLogin }) => {
 
   const [prodt, setProdt] = useState("home");
-  const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -21,9 +21,10 @@ const Navbar = ({ setShowLogin }) => {
       <Link to='/'><img className='Logoweb' src={assets.Logoweb} alt="" /></Link>
       <ul className="navbar-prodt">
         <Link to="/" onClick={() => setProdt("home")} className={`${prodt === "home" ? "active" : ""}`}>home</Link>
-        <a href='#explore-prodt' onClick={() => setProdt("prodt")} className={`${prodt === "prodt" ? "active" : ""}`}>prodt</a>
-        <a href='#app-download' onClick={() => setProdt("mob-app")} className={`${prodt === "mob-app" ? "active" : ""}`}>mobile app</a>
-        <a href='#footer' onClick={() => setProdt("contact")} className={`${prodt === "contact" ? "active" : ""}`}>contact us</a>
+        <Link to='#explore-prodt' onClick={() => setProdt("prodt")} className={`${prodt === "prodt" ? "active" : ""}`}>prodt</Link>
+        <Link to='#app-download' onClick={() => setProdt("mob-app")} className={`${prodt === "mob-app" ? "active" : ""}`}>mobile app</Link>
+        <Link to="/about" onClick={() => setProdt("aboutus")} className={`${prodt === "aboutus" ? "active" : ""}`}>about us</Link>
+        <Link to='#footer' onClick={() => setProdt("contact")} className={`${prodt === "contact" ? "active" : ""}`}>contact us</Link>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
@@ -35,9 +36,9 @@ const Navbar = ({ setShowLogin }) => {
           : <div className='navbar-profile'>
             <img src={assets.profile_icon} alt="" />
             <ul className='navbar-profile-dropdown'>
-              <li onClick={()=>navigate('/myorders')}> <img src={assets.bag_icon} alt="" /> <p>Orders</p></li>
+              <li onClick={() => navigate('/myorders')}> <img src={assets.bag_icon} alt="" /> <p>Orders</p></li>
               <hr />
-              <li onClick={logout}> <img src={assets.logout_icon} alt="" /> <p>Logout</p></li> 
+              <li onClick={logout}> <img src={assets.logout_icon} alt="" /> <p>Logout</p></li>
             </ul>
           </div>
         }
