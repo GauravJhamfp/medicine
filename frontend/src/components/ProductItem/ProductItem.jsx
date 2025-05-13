@@ -7,12 +7,17 @@ const ProductItem = ({ image, name, price, desc, id }) => {
 
     const [itemCount, setItemCount] = useState(0);
     const { cartItems, addToCart, removeFromCart, url, currency } = useContext(StoreContext);
+    const [imageSrc, setImageSrc] = useState(`${url}/images/${image}`);
 
+    const handleError = () => {
+        // If the image fails to load, set the src to the placeholder image
+        setImageSrc(`${url}/images/placeholder.png`);
+    };
     return (
         <div className='prodt-item'>
             <div className='prodt-item-img-container'>
                 <img className='prodt-item-image' src={url + "/images/" + image} alt="" />
-                {!cartItems?.[id]
+                {!cartItems[id]
                     ? <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt="" />
                     : <div className="prodt-item-counter">
                         <img src={assets.remove_icon_red} onClick={() => removeFromCart(id)} alt="" />
